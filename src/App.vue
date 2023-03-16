@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 
 </script>
 
 <template>
-  <span class="underline">TOT</span>
+
 </template>
