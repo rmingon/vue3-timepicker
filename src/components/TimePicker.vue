@@ -34,11 +34,11 @@
   })
 
   const emits = defineEmits<{
-    (e: 'selected', time: Time)
+    (e: 'update:modelValue', time: Time)
   }>()
 
-  const setHour = (time: Time) => {
-    emits('selected', time)
+  const setHour = (time_selected: Time) => {
+    emits('update:modelValue', time_selected)
   }
 
   onMounted(() => {
