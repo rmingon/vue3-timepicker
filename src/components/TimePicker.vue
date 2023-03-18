@@ -8,7 +8,7 @@
 <script setup lang="ts">
   import {computed, onMounted, ref} from "vue";
 
-  const minutes = ref([])
+  const times = ref<Time[]>([])
 
   const search = ref('')
 
