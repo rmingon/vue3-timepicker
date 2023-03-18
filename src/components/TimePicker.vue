@@ -18,7 +18,9 @@
 
   interface Time {
     hour: number,
-    minute: number
+    minute: number,
+    period?: "PM" | "AM" | null,
+    toString: string
   }
 
   const times = computed(() => minutes.value.filter(el => el.replaceAll(' ', '').includes(search.value.replaceAll(' ', ''))))
