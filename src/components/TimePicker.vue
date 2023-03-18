@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col w-32 h-64 overflow-y-scroll block timepicker shadow-xl space-y-1">
     <input class="border p-1 mx-2 mt-1" type="text" v-model="search">
-    <div class="cursor-pointer text-xl text-cyan-800 hover:bg-cyan-100 pl-2" @click="setHour(time)" v-for="time in times" value="">{{ time }}</div>
+    <div class="cursor-pointer text-xl text-cyan-800 hover:bg-cyan-100 pl-2" :class="time.toString === selected ? 'bg-cyan-200' : ''" @click="setHour(time)" v-for="time in times_filtered" value="">{{ time.toString }}</div>
   </div>
 </template>
 
@@ -40,7 +40,13 @@
   onMounted(() => {
     for(let hour = 0; hour <= 23; hour++) {
       for (let minute = 0; minute < 60; minute += props.step) {
-        minutes.value.push(`${hour} : ${minute < 10 ? '0'+minute : minute} ${hour < 12 ? 'AM' : 'PM'}`)
+        const period: string = `  ${hour < 12 ? 'AM' : 'PM'}`
+        times.value.push({
+          hour,
+          minute,
+          period: props.period || null,
+          toString: `${hour} : ${minute < 10 ? '0'+minute : minute}${props.format === "12" ? period : ''}`
+        })
       }
     }
   })
