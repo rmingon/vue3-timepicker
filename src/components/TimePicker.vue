@@ -14,6 +14,8 @@
 
   interface Props {
     step: number
+    modelValue: Time
+    format: "12" | "24"
   }
 
   interface Time {
@@ -23,10 +25,12 @@
     toString: string
   }
 
-  const times = computed(() => minutes.value.filter(el => el.replaceAll(' ', '').includes(search.value.replaceAll(' ', ''))))
+  const times_filtered = computed<Time[]>(() => times.value.filter(el => el.toString.replaceAll(' ', '').includes(search.value.replaceAll(' ', ''))))
+  const selected = computed(() => props.modelValue.toString)
 
   const props = withDefaults(defineProps<Props>(), {
-    step: 15
+    step: 15,
+    period: null
   })
 
   const emits = defineEmits<{
